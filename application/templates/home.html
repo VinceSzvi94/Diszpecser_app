@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+
+{% if user.is_authenticated %}
+<h1>Diszpécser szolgálat adatkezelő felület</h1>
+<br/>
+<h2>Üdvözölet {{ user.username }}!</h2>
+
+{% else %}
+<h1>Bejelentkezés</h1>
+<br/>
+
+<form method="POST" action="{% url 'home' %}">
+    {% csrf_token %}
+    <form>
+      <div class="mb-3">
+        <input type="text" class="form-control" name="username", placeholder="Felhasználónév" required>
+      </div>
+      <div class="mb-3">
+        <input type="password" class="form-control" name="password", placeholder="Jelszó" required>
+      </div>
+      <br/>
+      <button type="submit" class="btn btn-primary">Bejelentkezés</button>
+    </form>
+</form>
+
+{% endif %}
+
+</div>
+
+{% endblock %}
