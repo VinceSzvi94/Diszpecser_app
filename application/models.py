@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 
-# Djangoban a tablakat a Model objektumon keresztül lehet kezelni, mely modelleket a ./migrations/0001_initial.py fajlban teszunk be az adatbazisba.
+# Djangoban a tablakat a ORM-en keresztül lehet kezelni
 # Diszpecser tablahoz a djangoba beepitett User objektumot kell atalakitani egyeni celokra
 # A felhasznalokat kezelo Diszpecser osztalyhoz kell egy Manager osztaly is
 class DiszpecserManager(BaseUserManager):
@@ -59,7 +59,7 @@ class Diszpecser(AbstractBaseUser, PermissionsMixin):
 #     eset_leirasa VARCHAR(500),
 #     intezkedes_kezdete DATETIME NOT NULL,
 #     intezkedes_leirasa VARCHAR(300)
-#     fogado_diszpecser VARCHAR(30) REFERENCES diszpecser(user.username));
+#     fogado_diszpecser VARCHAR(30) REFERENCES diszpecser.azonosito ON DELETE NO ACTION);
 class Hivas(models.Model):
     hivas_id = models.BigAutoField(auto_created=True, primary_key=True)
     hivas_kezdete = models.DateTimeField(),

@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if user.is_authenticated %}
-<h1>Hívás rögzítése</h1>
+<div class="col-md-6 offset-md-3">
+<h1>Rögzítse a beérkező hívást!</h1>
+<br/>
 
-{% else %}
+<form method="POST" action="{% url 'add_hivas' %}">
+	{% csrf_token %}
 
-{% endif %}
+	{{ form.as_p }}
+
+<br/>
+  <button type="submit" class="btn btn-secondary">Hívás rögzítése és intézkedés hozzáadása</button>
+   <a href="{% url 'add_intezkedes' %}" class="btn btn-secondary">Back</a>
+
+</form>
+
+</div>
 
 {% endblock %}

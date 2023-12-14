@@ -8,21 +8,16 @@ class DiszpecserCreationForm(UserCreationForm):
     email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email cím'}))
     family_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Vezetéknév'}))
     given_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Keresztnév'}))
-    name = f'{family_name} {given_name}'
+    nev = f'{family_name} {given_name}'
     beosztas = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Beosztás'}))
 
     # felhasználó (diszpécser) létrehozása user táblában
     class Meta:
         model = Diszpecser
-        fields = ('username', 'name', 'email', 'password1', 'password2', 'beosztas')
+        fields = ('nev', 'email', 'password1', 'password2', 'beosztas')
     
     def __init__(self, *args, **kwargs):
         super(DiszpecserCreationForm, self).__init__(*args, **kwargs)
-
-        self.fields['username'].widget.attrs['class'] = 'form-control'
-        self.fields['username'].widget.attrs['placeholder'] = 'Felhasználónév'
-        self.fields['username'].label = ''
-        # self.fields['username'].help_text = '<span class="form-text text-muted"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>'
 
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password1'].widget.attrs['placeholder'] = 'Jelszó'
